@@ -24,7 +24,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private bool isGrounded;
 
+    private float _playerPosition;
 
+    public float playerPosition => _playerPosition;
+
+    private void Awake()
+    {
+        GameEvents.onPlayerCentered.AddListener(ChangeSpeed);
+    }
     private void Start()
     {
         characterController = GetComponent<CharacterController>();
@@ -32,6 +39,9 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        _playerPosition = transform.position.x;
+
+        // Criar função IsGrounded
         isGrounded = characterController.isGrounded;
 
         if (isGrounded && velocity.y < 0)
@@ -39,15 +49,25 @@ public class PlayerController : MonoBehaviour
             velocity.y = 0f;
         }
 
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        // Criar função Move
+        if (Input.GetKey("space") || Input.GetKey("up") && isGrounded)
         {
-            velocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravity);
+            velocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravity); // verificar
         }
 
-        move = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
+        //move = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
+        move = new Vector3(1, 0, 0);
         characterController.Move(move * Time.deltaTime * speed);
 
         velocity.y += gravity * Time.deltaTime;
         characterController.Move(velocity * Time.deltaTime);
+    }
+
+    private void ChangeSpeed()
+    {
+        if (speed == 8f)
+            speed = 7f;
+        else
+            speed = 7f;
     }
 }
