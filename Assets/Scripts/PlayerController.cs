@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float jumpHeight = 1.5f;
     [SerializeField]
-    private float speed = 8f;
+    private float speed = 7f;
     [SerializeField]
     private bool isGrounded;
 
