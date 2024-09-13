@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Rendering;
-using UnityEditorInternal;
+//using UnityEditor.Rendering;
+//using UnityEditorInternal;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
