@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // Criar função Move
-        if (Input.GetKey("space") || Input.GetKey("up") && isGrounded)
+        if (Input.GetKeyDown("space") && isGrounded || Input.GetKeyDown("up") && isGrounded)
         {
             velocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravity); // verificar
         }
