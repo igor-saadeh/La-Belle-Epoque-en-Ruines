@@ -69,9 +69,11 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown("down") && characterController.isGrounded)
         {
+            speed += 2f;
             characterController.height /= 2f;
             StartCoroutine("OnSliding");
         }
+        speed -= 2f;
     }
 
     IEnumerator OnSliding()
