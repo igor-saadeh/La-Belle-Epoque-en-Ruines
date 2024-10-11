@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
         Jump();
         Slide();
 
-        //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.up) * 1000f, Color.yellow);
+        //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.up) * 1f, Color.yellow);
     }
 
     //Responsável pelo movimento horizontal do jogador
@@ -77,10 +77,8 @@ public class PlayerController : MonoBehaviour
     IEnumerator OnSliding()
     {
         yield return new WaitForSeconds(0.5f);
-
-        RaycastHit hit;
         
-        if (!Physics.Raycast(transform.position, transform.TransformDirection(Vector3.up), out hit, Mathf.Infinity))
+        if (!Physics.Raycast(transform.position, transform.TransformDirection(Vector3.up), 1f))
         {
             characterController.height *= 2f;
 
