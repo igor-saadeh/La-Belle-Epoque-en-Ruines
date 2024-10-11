@@ -1,8 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
-
 
 
 public class PlayerController : MonoBehaviour
@@ -10,28 +11,21 @@ public class PlayerController : MonoBehaviour
     // Alterar para o player se movere em uma velocidade fixa
 
     private CharacterController characterController;
+
     [SerializeField]
     private Vector3 velocity;
     [SerializeField]
     private Vector3 move;
-
     [SerializeField]
+
     private float gravity = -40f;
     [SerializeField]
     private float jumpHeight = 1.5f;
     [SerializeField]
     private float speed = 7f;
     [SerializeField]
-    private bool isGrounded;
 
-    private float _playerPosition;
 
-    public float playerPosition => _playerPosition;
-
-    private void Awake()
-    {
-        GameEvents.onPlayerCentered.AddListener(ChangeSpeed);
-    }
     private void Start()
     {
         characterController = GetComponent<CharacterController>();
@@ -39,35 +33,59 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        _playerPosition = transform.position.x;
+        Move();
+        Jump();
+        Slide();
 
-        // Criar função IsGrounded
-        isGrounded = characterController.isGrounded;
+        //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.up) * 1000f, Color.yellow);
+    }
 
-        if (isGrounded && velocity.y < 0)
-        {
-            velocity.y = 0f;
-        }
+    //Responsável pelo movimento horizontal do jogador
+    private void Move()
+    {
+        //move = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
+        move = new Vector3(1, 0, 0);
+        characterController.Move(move * Time.deltaTime * speed);
+    }
 
-        // Criar função Move
-        if (Input.GetKeyDown("space") && isGrounded || Input.GetKeyDown("up") && isGrounded)
+    //Responsável pelo pulo do jogador
+    private void Jump()
+    {
+        if (Input.GetKeyDown("space") && characterController.isGrounded || Input.GetKeyDown("up") && characterController.isGrounded)
         {
             velocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravity); // verificar
         }
 
-        //move = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
-        move = new Vector3(1, 0, 0);
-        characterController.Move(move * Time.deltaTime * speed);
+        if (characterController.isGrounded && velocity.y < 0)
+        {
+            velocity.y = 0f;
+        }
 
         velocity.y += gravity * Time.deltaTime;
         characterController.Move(velocity * Time.deltaTime);
     }
 
-    private void ChangeSpeed()
+    private void Slide()
     {
-        if (speed == 8f)
-            speed = 7f;
-        else
-            speed = 7f;
+        if (Input.GetKeyDown("down") && characterController.isGrounded)
+        {
+            characterController.height /= 2f;
+            StartCoroutine("OnSliding");
+        }
+    }
+
+    IEnumerator OnSliding()
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        RaycastHit hit;
+        
+        if (!Physics.Raycast(transform.position, transform.TransformDirection(Vector3.up), out hit, Mathf.Infinity))
+        {
+            characterController.height *= 2f;
+
+            yield break;
+        }
+        StartCoroutine("OnSliding");
     }
 }
