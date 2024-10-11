@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float jumpHeight = 1.5f;
     [SerializeField]
-    private float speed = 7f;
+    private float speed = 8f;
     [SerializeField]
 
 
@@ -72,8 +72,9 @@ public class PlayerController : MonoBehaviour
             speed += 2f;
             characterController.height /= 2f;
             StartCoroutine("OnSliding");
+            speed -= 2f;
         }
-        speed -= 2f;
+        
     }
 
     IEnumerator OnSliding()
