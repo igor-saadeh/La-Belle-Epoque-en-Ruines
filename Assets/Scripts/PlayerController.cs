@@ -30,12 +30,28 @@ public class PlayerController : MonoBehaviour
     {
         characterController = GetComponent<CharacterController>();
     }
-
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            // Chama o método que faz a câmera se aproximar mais rápido
+            Camera.main.GetComponent<CameraFollower>().OnPlayerCollision();
+        }
+    }
     private void Update()
     {
         Move();
         Jump();
         Slide();
+
+        
+        if (true)
+        {
+
+        }
+        {
+            Camera.main.GetComponent<CameraFollower>().RecoverFromCollision();
+        }
 
         //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.up) * 1f, Color.yellow);
     }
@@ -89,4 +105,7 @@ public class PlayerController : MonoBehaviour
         }
         StartCoroutine("OnSliding");
     }
+    
+
+
 }
