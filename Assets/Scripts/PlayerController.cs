@@ -77,7 +77,7 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("isGrounded", true);
             if (velocity.y < 0f)
             {
-                animator.SetFloat("ySpeed", velocity.y);
+                //animator.SetFloat("ySpeed", velocity.y);
                 velocity.y = 0f;
             }
             if (Input.GetKeyDown("space") || Input.GetKeyDown("up"))
@@ -88,6 +88,7 @@ public class PlayerController : MonoBehaviour
         }
         velocity.y += gravity * Time.deltaTime;
         characterController.Move(velocity * Time.deltaTime);
+        animator.SetFloat("ySpeed", velocity.y);
     }
 
     private bool isPlayerGrounded()
