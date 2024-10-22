@@ -9,9 +9,13 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     // Alterar para o player se movere em uma velocidade fixa
-
     private CharacterController characterController;
+    private Animator animator;
 
+    [SerializeField]
+    private Vector3 boxSize = new Vector3(1, 1, 1);
+    [SerializeField]
+    private float castDistance = 1;
     [SerializeField]
     private Vector3 velocity;
     [SerializeField]
@@ -29,6 +33,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         characterController = GetComponent<CharacterController>();
+        animator = GetComponent<Animator>();
     }
     void OnCollisionEnter(Collision collision)
     {
@@ -44,7 +49,6 @@ public class PlayerController : MonoBehaviour
         Jump();
         Slide();
 
-        
         if (true)
         {
 
@@ -59,26 +63,46 @@ public class PlayerController : MonoBehaviour
     //Responsável pelo movimento horizontal do jogador
     private void Move()
     {
-        //move = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
-        move = new Vector3(1, 0, 0);
+        move = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
+        //move = new Vector3(1, 0, 0);
         characterController.Move(move * Time.deltaTime * speed);
     }
 
     //Responsável pelo pulo do jogador
     private void Jump()
     {
-        if (Input.GetKeyDown("space") && characterController.isGrounded || Input.GetKeyDown("up") && characterController.isGrounded)
+        //if (characterController.isGrounded)
+        if (isPlayerGrounded())
         {
-            velocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravity); // verificar
+            animator.SetBool("isGrounded", true);
+            if (velocity.y < 0f)
+            {
+                animator.SetFloat("ySpeed", velocity.y);
+                velocity.y = 0f;
+            }
+            if (Input.GetKeyDown("space") || Input.GetKeyDown("up"))
+            {
+                velocity.y += Mathf.Sqrt(jumpHeight * -4.0f * gravity); // verificar
+                animator.SetBool("isGrounded", false);
+            }
         }
-
-        if (characterController.isGrounded && velocity.y < 0)
-        {
-            velocity.y = 0f;
-        }
-
         velocity.y += gravity * Time.deltaTime;
         characterController.Move(velocity * Time.deltaTime);
+    }
+
+    private bool isPlayerGrounded()
+    {
+        if (Physics.BoxCast(transform.position, boxSize, transform.TransformDirection(Vector3.down), Quaternion.identity, castDistance))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireCube(transform.position + transform.TransformDirection(Vector3.down) * castDistance, boxSize);
     }
 
     private void Slide()
@@ -89,8 +113,7 @@ public class PlayerController : MonoBehaviour
             characterController.height /= 2f;
             StartCoroutine("OnSliding");
             speed -= 2f;
-        }
-        
+        }        
     }
 
     IEnumerator OnSliding()
