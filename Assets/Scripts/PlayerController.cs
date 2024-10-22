@@ -14,27 +14,34 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     private Vector3 boxSize = new Vector3(1, 1, 1);
+
     [SerializeField]
     private float castDistance = 1;
+
     [SerializeField]
     private Vector3 velocity;
+
     [SerializeField]
     private Vector3 move;
-    [SerializeField]
 
+    [SerializeField]
     private float gravity = -40f;
+
     [SerializeField]
     private float jumpHeight = 1.5f;
+
     [SerializeField]
     private float speed = 8f;
+
     [SerializeField]
 
-
+    
     private void Start()
     {
         characterController = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
     }
+
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Obstacle"))
@@ -43,6 +50,7 @@ public class PlayerController : MonoBehaviour
             Camera.main.GetComponent<CameraFollower>().OnPlayerCollision();
         }
     }
+
     private void Update()
     {
         Move();
@@ -90,7 +98,7 @@ public class PlayerController : MonoBehaviour
         characterController.Move(velocity * Time.deltaTime);
         animator.SetFloat("ySpeed", velocity.y);
     }
-
+    //Retorna true se o player está tocando o chão
     private bool isPlayerGrounded()
     {
         if (Physics.BoxCast(transform.position, boxSize, transform.TransformDirection(Vector3.down), Quaternion.identity, castDistance))
@@ -99,13 +107,13 @@ public class PlayerController : MonoBehaviour
         }
         return false;
     }
-
+    //Desenhar o boxCast no editor
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireCube(transform.position + transform.TransformDirection(Vector3.down) * castDistance, boxSize);
     }
-
+    //Responsável pelo movimento de deslizar do jogador
     private void Slide()
     {
         if (Input.GetKeyDown("down") && characterController.isGrounded)
@@ -116,7 +124,7 @@ public class PlayerController : MonoBehaviour
             speed -= 2f;
         }        
     }
-
+    //Controla se o player pode sair do "slide"
     IEnumerator OnSliding()
     {
         yield return new WaitForSeconds(0.5f);
