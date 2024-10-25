@@ -36,6 +36,12 @@ public class OptionsMenu : MonoBehaviour
         resolutionDropdown.RefreshShownValue();
     }
 
+    public void SetResolution(int currentResolution)
+    {
+        Resolution resolution = resolutions[currentResolution];
+        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+    }
+
     public void SetVolume(float volume)
     {
         //Debug.Log(volume);
