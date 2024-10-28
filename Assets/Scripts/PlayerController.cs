@@ -42,14 +42,7 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Obstacle"))
-        {
-            // Chama o método que faz a câmera se aproximar mais rápido
-            Camera.main.GetComponent<CameraFollower>().OnPlayerCollision();
-        }
-    }
+    
 
     private void Update()
     {
@@ -57,13 +50,7 @@ public class PlayerController : MonoBehaviour
         Jump();
         Slide();
 
-        if (true)
-        {
-
-        }
-        {
-            Camera.main.GetComponent<CameraFollower>().RecoverFromCollision();
-        }
+       
 
         //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.up) * 1f, Color.yellow);
     }
@@ -137,7 +124,15 @@ public class PlayerController : MonoBehaviour
         }
         StartCoroutine("OnSliding");
     }
-    
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            // Quando colidir com o obstáculo, chama a função da câmera
+            Camera.main.GetComponent<CameraFollower>().PlayerHitObstacle();
+        }
+    }
+
 
 
 }

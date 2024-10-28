@@ -1,56 +1,35 @@
 using UnityEngine;
 
-
 public class CameraFollower : MonoBehaviour
 {
-    public Transform player; 
-    public float normalFollowSpeed = 5f; 
-    public float increasedFollowSpeed = 7f; 
-    public float maxDistanceBehind = 2f;
-    public float minDistanceBeforeGameOver = 0.5f; 
-    private float currentFollowSpeed; 
-    private bool isColliding = false; 
+    public Transform player;
+    public float followSpeed = 5f; // Velocidade normal da câmera
+    public float catchUpSpeed = 10f; // Velocidade de aproximação após colisão
+    public float cameraOffset = 5f; // Distância normal da câmera ao jogador
 
-    void Start()
-    {
-        
-        currentFollowSpeed = normalFollowSpeed;
-    }
+    private bool playerHitObstacle = false;
 
     void Update()
     {
-        
-        Vector3 cameraPosition = transform.position;
+        // Posição alvo da câmera (sempre segue o player)
+        Vector3 targetPosition = new Vector3(player.position.x + cameraOffset, transform.position.y, transform.position.z);
 
-        
-        float playerX = player.position.x;
-
-        
-        float distance = playerX - cameraPosition.x;
-
-      
-        cameraPosition.x = Mathf.Lerp(cameraPosition.x, playerX - maxDistanceBehind, currentFollowSpeed * Time.deltaTime);
-
-        transform.position = cameraPosition;
-
-        
-        if (distance < minDistanceBeforeGameOver)
+        // Verifica se o player bateu no obstáculo
+        if (playerHitObstacle)
         {
-            
-            Debug.Log("Game Over!");
+            // Aproxima mais rápido
+            transform.position = Vector3.Lerp(transform.position, targetPosition, catchUpSpeed * Time.deltaTime);
+        }
+        else
+        {
+            // Segue normalmente
+            transform.position = Vector3.Lerp(transform.position, targetPosition, followSpeed * Time.deltaTime);
         }
     }
 
-    
-    public void OnPlayerCollision()
+    // Este método é chamado quando o player bate em um obstáculo
+    public void PlayerHitObstacle()
     {
-        isColliding = true;
-        currentFollowSpeed = increasedFollowSpeed; 
-    }
-
-    public void RecoverFromCollision()
-    {
-        isColliding = false;
-        currentFollowSpeed = normalFollowSpeed;
+        playerHitObstacle = true;
     }
 }
