@@ -30,7 +30,7 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
-        transform.position += new Vector3(speed * Time.deltaTime, playerController.transform.position.y, 0);
+        transform.position = new Vector3(transform.position.x + speed * Time.deltaTime, playerController.transform.position.y, transform.position.z);
     }
 }
 
