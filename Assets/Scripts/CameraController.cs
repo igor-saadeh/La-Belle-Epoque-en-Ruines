@@ -6,17 +6,17 @@ using UnityEngine.Experimental.AI;
 public class CameraController : MonoBehaviour
 {
     public PlayerController playerController; // temporario
-    private float speed; // 7?
+    private float speed = 8f;
     [SerializeField]
-    private float startSpeed = 7f;
+    private float startSpeed = 4f;
     [SerializeField]
     private float yOffset = 4f;
     [SerializeField]
     private float xOffset = 1f;
 
     private void Start()
-    {   
-        speed=startSpeed;
+    {
+        speed = startSpeed;
         transform.position = new Vector3(playerController.transform.position.x + xOffset, playerController.transform.position.y + yOffset, transform.position.z); //prototipo
     }
 
@@ -42,10 +42,3 @@ public class CameraController : MonoBehaviour
         { Debug.Log("Player morreu"); }
     }
 }
-
-/*
- * Camera se movimente no eixo X numa velocidade fixa (5f)
- * Camera deve seguir o movimento do personagem em y
- * 
- * 
-*/

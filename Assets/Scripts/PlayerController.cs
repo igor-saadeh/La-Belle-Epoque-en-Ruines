@@ -40,18 +40,13 @@ public class PlayerController : MonoBehaviour
     {
         characterController = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
-    }
-
-    
+    }  
 
     private void Update()
     {
         Move();
         Jump();
         Slide();
-
-       
-
         //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.up) * 1f, Color.yellow);
     }
 
@@ -124,15 +119,4 @@ public class PlayerController : MonoBehaviour
         }
         StartCoroutine("OnSliding");
     }
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Obstacle"))
-        {
-            // Quando colidir com o obstáculo, chama a função da câmera
-            Camera.main.GetComponent<CameraFollower>().PlayerHitObstacle();
-        }
-    }
-
-
-
 }
