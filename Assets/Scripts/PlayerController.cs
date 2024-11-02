@@ -8,9 +8,14 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    // Alterar para o player se movere em uma velocidade fixa
     private CharacterController characterController;
     private Animator animator;
+
+    [SerializeField]
+    private bool storagedSlide = false;
+
+    [SerializeField]
+    private bool storagedJump = false;
 
     [SerializeField]
     private Vector3 boxSize = new Vector3(1, 1, 1);
@@ -75,6 +80,25 @@ public class PlayerController : MonoBehaviour
                 _velocity.y += Mathf.Sqrt(jumpHeight * -4.0f * gravity); // verificar
                 animator.SetBool("isGrounded", false);
             }
+            else if (Input.GetKey("space") && storagedJump || Input.GetKey("up") && storagedJump)
+            {
+                storagedJump = false;
+                _velocity.y += Mathf.Sqrt(jumpHeight * -4.0f * gravity); // verificar
+                animator.SetBool("isGrounded", false);
+            }
+            if (Input.GetKeyUp("space") || Input.GetKeyUp("up"))
+            {
+                // reduz altura do pulo
+                // velocity /= 2;
+            }
+        }
+        else
+        {
+            if (Input.GetKeyDown("space") && !storagedJump || Input.GetKeyDown("up") && !storagedJump)
+            { 
+                storagedJump = true;
+                StartCoroutine(StoragedJumpTimer());
+            }
         }
         _velocity.y += gravity * Time.deltaTime;
         characterController.Move(_velocity * Time.deltaTime);
@@ -98,13 +122,32 @@ public class PlayerController : MonoBehaviour
     //Responsável pelo movimento de deslizar do jogador
     private void Slide()
     {
-        if (Input.GetKeyDown("down") && characterController.isGrounded)
+        if (isPlayerGrounded())
         {
-            animator.SetBool("isSliding", true);
-            speed += 4f;
-            characterController.height /= 2f;
-            StartCoroutine("OnSliding");
-        }        
+            if (Input.GetKeyDown("down"))
+            {
+                animator.SetBool("isSliding", true);
+                speed += 4f;
+                characterController.height /= 2f;
+                StartCoroutine("OnSliding");
+            }
+            else if (Input.GetKey("down") && storagedSlide)
+            {
+                storagedSlide = false;
+                animator.SetBool("isSliding", true);
+                speed += 4f;
+                characterController.height /= 2f;
+                StartCoroutine("OnSliding");
+            }
+        }
+        else
+        {
+            if (Input.GetKeyDown("down"))
+            {
+                storagedSlide = true;
+                StartCoroutine(StoragedSlideTimer());
+            }
+        }
     }
     //Controla se o player pode sair do "slide"
     IEnumerator OnSliding()
@@ -119,5 +162,17 @@ public class PlayerController : MonoBehaviour
             yield break;
         }
         StartCoroutine("OnSliding");
+    }
+
+    IEnumerator StoragedJumpTimer()
+    {
+        yield return new WaitForSeconds(0.25f);
+        storagedJump = false;
+    }
+
+    IEnumerator StoragedSlideTimer()
+    {
+        yield return new WaitForSeconds(0.25f);
+        storagedSlide = false;
     }
 }
