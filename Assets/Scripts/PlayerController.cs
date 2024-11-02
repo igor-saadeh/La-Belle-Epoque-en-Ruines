@@ -19,7 +19,12 @@ public class PlayerController : MonoBehaviour
     private float castDistance = 1;
 
     [SerializeField]
-    private Vector3 velocity;
+    private Vector3 _velocity;
+
+    public Vector3 velocity
+    { 
+        get { return _velocity; }
+    }
 
     [SerializeField]
     private Vector3 move;
@@ -33,8 +38,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float speed = 8f;
 
-    [SerializeField]
-
     
     private void Start()
     {
@@ -47,7 +50,6 @@ public class PlayerController : MonoBehaviour
         Move();
         Jump();
         Slide();
-        //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.up) * 1f, Color.yellow);
     }
 
     //Responsável pelo movimento horizontal do jogador
@@ -61,24 +63,22 @@ public class PlayerController : MonoBehaviour
     //Responsável pelo pulo do jogador
     private void Jump()
     {
-        //if (characterController.isGrounded)
         if (isPlayerGrounded())
         {
             animator.SetBool("isGrounded", true);
-            if (velocity.y < 0f)
+            if (_velocity.y < 0f)
             {
-                //animator.SetFloat("ySpeed", velocity.y);
-                velocity.y = 0f;
+                _velocity.y = 0f;
             }
             if (Input.GetKeyDown("space") || Input.GetKeyDown("up"))
             {
-                velocity.y += Mathf.Sqrt(jumpHeight * -4.0f * gravity); // verificar
+                _velocity.y += Mathf.Sqrt(jumpHeight * -4.0f * gravity); // verificar
                 animator.SetBool("isGrounded", false);
             }
         }
-        velocity.y += gravity * Time.deltaTime;
-        characterController.Move(velocity * Time.deltaTime);
-        animator.SetFloat("ySpeed", velocity.y);
+        _velocity.y += gravity * Time.deltaTime;
+        characterController.Move(_velocity * Time.deltaTime);
+        animator.SetFloat("ySpeed", _velocity.y);
     }
     //Retorna true se o player está tocando o chão
     private bool isPlayerGrounded()
@@ -100,21 +100,22 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown("down") && characterController.isGrounded)
         {
-            speed += 2f;
+            animator.SetBool("isSliding", true);
+            speed += 4f;
             characterController.height /= 2f;
             StartCoroutine("OnSliding");
-            speed -= 2f;
         }        
     }
     //Controla se o player pode sair do "slide"
     IEnumerator OnSliding()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.25f);
         
         if (!Physics.Raycast(transform.position, transform.TransformDirection(Vector3.up), 1f))
         {
             characterController.height *= 2f;
-
+            speed -= 4f;
+            animator.SetBool("isSliding", false);
             yield break;
         }
         StartCoroutine("OnSliding");

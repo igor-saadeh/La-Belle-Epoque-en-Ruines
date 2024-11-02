@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4374894, g: 0.48531163, b: 0.56558734, a: 1}
+  m_IndirectSpecularColor: {r: 0.4374894, g: 0.48531163, b: 0.5655873, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6310,14 +6310,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1203023135}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.14536858, y: 0.10340578, z: -0.015278852, w: 0.98384035}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -70.4, y: 30.1, z: 160.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 443659513}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 16.81, y: 12, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1203023139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6332,7 +6332,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerController: {fileID: 1604573769}
   startSpeed: 4
-  yOffset: 4
+  yOffset: 0
   xOffset: 1
 --- !u!114 &1203023140
 MonoBehaviour:
@@ -8456,7 +8456,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.48, y: 0.48}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -8515,7 +8515,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cffb8c97d6d82e42b8c0cc39913dc91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boxSize: {x: 0.7, y: 0.05, z: 0.7}
+  boxSize: {x: 0.4, y: 0.05, z: 0.7}
   castDistance: 0.82
   velocity: {x: 0, y: 0, z: 0}
   move: {x: 0, y: 0, z: 0}
