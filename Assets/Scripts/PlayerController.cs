@@ -86,11 +86,6 @@ public class PlayerController : MonoBehaviour
                 _velocity.y += Mathf.Sqrt(jumpHeight * -4.0f * gravity); // verificar
                 animator.SetBool("isGrounded", false);
             }
-            if (Input.GetKeyUp("space") || Input.GetKeyUp("up"))
-            {
-                // reduz altura do pulo
-                // velocity /= 2;
-            }
         }
         else
         {
@@ -98,6 +93,11 @@ public class PlayerController : MonoBehaviour
             { 
                 storagedJump = true;
                 StartCoroutine(StoragedJumpTimer());
+            }
+            if (Input.GetKeyUp("space") || Input.GetKeyUp("up"))
+            {
+                // reduz altura do pulo
+                _velocity.y /= 2f;
             }
         }
         _velocity.y += gravity * Time.deltaTime;
