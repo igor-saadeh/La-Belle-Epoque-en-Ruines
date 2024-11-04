@@ -5,6 +5,5 @@ using UnityEngine.Events;
 
 public class GameEvents
 {
-    // Quando o personagem atinge o centro da câmera
-    //static public UnityEvent onPlayerCentered = new UnityEvent();
+    static public UnityEvent onGameover = new UnityEvent();
 }

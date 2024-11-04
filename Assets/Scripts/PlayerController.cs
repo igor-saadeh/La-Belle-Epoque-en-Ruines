@@ -60,8 +60,8 @@ public class PlayerController : MonoBehaviour
     //Responsável pelo movimento horizontal do jogador
     private void Move()
     {
-        move = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
-        //move = new Vector3(1, 0, 0);
+        //move = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
+        move = new Vector3(1, 0, 0);
         characterController.Move(move * Time.deltaTime * speed);
     }
 

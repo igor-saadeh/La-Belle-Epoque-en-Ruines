@@ -36,9 +36,11 @@ public class CameraController : MonoBehaviour
     {
         Camera camera = this.GetComponent<Camera>();
         Vector2 screenPosition = camera.WorldToScreenPoint(playerController.transform.position);
-        float playerMaxLimit = -50f;
+        float leftLimit = -50f;
 
-        if (screenPosition.x < playerMaxLimit)
-        { Debug.Log("Player morreu"); }
+        if (screenPosition.x < leftLimit)
+        {
+            GameEvents.onGameover.Invoke();
+        }
     }
 }
