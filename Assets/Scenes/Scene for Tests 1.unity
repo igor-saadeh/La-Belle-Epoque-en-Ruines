@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4374894, g: 0.48531163, b: 0.56558734, a: 1}
+  m_IndirectSpecularColor: {r: 0.4374894, g: 0.48531163, b: 0.5655873, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2436,7 +2436,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 0.30000028, y: 3.39703, z: 6.0000005}
   m_Center: {x: 0, y: 0, z: -0.0000019073486}
@@ -2459,7 +2459,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.30000028, y: 3.39703, z: 6.0000005}
+  m_Size: {x: 0.30000028, y: 2.03, z: 6.0000005}
   m_Center: {x: 0, y: 0, z: -0.0000019073486}
 --- !u!1 &214338804 stripped
 GameObject:
@@ -11824,7 +11824,7 @@ Transform:
   m_GameObject: {fileID: 1604573764}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -70.64, y: 27.64, z: 167}
+  m_LocalPosition: {x: -70.64, y: 27.64, z: 167.62}
   m_LocalScale: {x: 2.5, y: 2.5, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11849,8 +11849,8 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 0.62
-  m_Radius: 0.14
+  m_Height: 0.55
+  m_Radius: 0.11
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.01
@@ -14040,7 +14040,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000061035156, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -1060.8052, y: -484}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1924985806
