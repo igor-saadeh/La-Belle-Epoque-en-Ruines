@@ -43,6 +43,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float speed = 8f;
 
+    private Vector3 lastPosition;
+
     
     private void Start()
     {
@@ -55,6 +57,17 @@ public class PlayerController : MonoBehaviour
         Move();
         Jump();
         Slide();
+
+        if (transform.position == lastPosition)
+        {
+            animator.SetBool("isIdle", true);
+        }
+        else
+        {
+            animator.SetBool("isIdle", false);
+        }
+
+        lastPosition = transform.position;
     }
 
     //Responsável pelo movimento horizontal do jogador
@@ -63,6 +76,24 @@ public class PlayerController : MonoBehaviour
         //move = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
         move = new Vector3(1, 0, 0);
         characterController.Move(move * Time.deltaTime * speed);
+    }
+
+    private Vector3 AdjustVelocityToSlope(Vector3 velocity)
+    {
+        Ray ray = new Ray(transform.position, Vector3.down);
+
+        if (Physics.Raycast(ray, out RaycastHit hitInfo, 0.2f))
+        {
+            var slopeRotation = Quaternion.FromToRotation(Vector3.up, hitInfo.normal);
+            var adjustedVelocity = slopeRotation * velocity;
+
+            if (adjustedVelocity.y < 0)
+            {
+                return adjustedVelocity;
+            }
+        }
+
+        return velocity;
     }
 
     //Responsável pelo pulo do jogador
@@ -100,7 +131,9 @@ public class PlayerController : MonoBehaviour
                 _velocity.y /= 2f;
             }
         }
-        _velocity.y += gravity * Time.deltaTime;
+        _velocity = AdjustVelocityToSlope(_velocity);
+        _velocity.y += gravity * Time.deltaTime; // verificar 
+
         characterController.Move(_velocity * Time.deltaTime);
         animator.SetFloat("ySpeed", _velocity.y);
     }

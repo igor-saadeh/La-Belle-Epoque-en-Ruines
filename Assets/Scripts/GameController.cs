@@ -1,24 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class GameController : MonoBehaviour
 {
-    private CameraController cameraController;
-    private PlayerController playerController;
-    // Start is called before the first frame update
-    void Start()
+    private int score = 0;
+    void Awake()
     {
-
+        GameEvents.onCollect.AddListener(RaiseScore);
     }
 
-    // Update is called once per frame
-    void Update()
+    void RaiseScore()
     {
-        //if (cameraController.cameraPosition <= playerController.playerPosition)
-        //    GameEvents.onPlayerCentered.Invoke();
-        //else
-        //    GameEvents.onPlayerCentered.Invoke();
-
+        score += 10;
+        Debug.Log(score);
     }
 }

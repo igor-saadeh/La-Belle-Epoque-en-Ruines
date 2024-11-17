@@ -6,4 +6,5 @@ using UnityEngine.Events;
 public class GameEvents
 {
     static public UnityEvent onGameover = new UnityEvent();
+    static public UnityEvent onCollect = new UnityEvent();
 }
