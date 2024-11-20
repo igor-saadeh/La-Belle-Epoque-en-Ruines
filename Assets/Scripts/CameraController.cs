@@ -23,24 +23,30 @@ public class CameraController : MonoBehaviour
     private void Update()
     {
         transform.position = new Vector3(transform.position.x + speed * Time.deltaTime, playerController.transform.position.y + yOffset, transform.position.z);
-
-        if (transform.position.x - playerController.transform.position.x <= 1)
-        { speed = 8f; }
-        else 
-        { speed = startSpeed; }
-
         isPlayerOffScreen();
     }
 
     private void isPlayerOffScreen()
     {
-        Camera camera = this.GetComponent<Camera>();
+        Camera camera = GetComponent<Camera>();
         Vector2 screenPosition = camera.WorldToScreenPoint(playerController.transform.position);
         float leftLimit = -50f;
 
         if (screenPosition.x < leftLimit)
         {
             GameEvents.onGameover.Invoke();
+        }
+        if (transform.position.x - playerController.transform.position.x > 1) // c = 5 p = 6 = -1
+        {
+            speed = startSpeed;
+        }
+        else if (transform.position.x - playerController.transform.position.x < 1) // c = 5 p = 4   
+        {
+            speed = 15f;
+        }
+        else
+        {
+            speed = 8f;
         }
     }
 }

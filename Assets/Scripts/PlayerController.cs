@@ -11,40 +11,31 @@ public class PlayerController : MonoBehaviour
     private CharacterController characterController;
     private Animator animator;
 
-    [SerializeField]
-    private bool storagedSlide = false;
+    [SerializeField] private bool storagedSlide = false;
+    [SerializeField] private bool storagedJump = false;
 
-    [SerializeField]
-    private bool storagedJump = false;
+    [SerializeField] private Vector3 boxSize = new Vector3(0.4f, 0.05f, 0.7f);
+    [SerializeField] private float castDistance = 0.82f;
 
-    [SerializeField]
-    private Vector3 boxSize = new Vector3(1, 1, 1);
-
-    [SerializeField]
-    private float castDistance = 1;
-
-    [SerializeField]
-    private Vector3 _velocity;
-
+    [SerializeField] private Vector3 _velocity;
     public Vector3 velocity
     { 
         get { return _velocity; }
     }
 
-    [SerializeField]
-    private Vector3 move;
+    [SerializeField] private Vector3 move;
+    [SerializeField] private float gravity = -40f;
+    [SerializeField] private float jumpHeight = 1.5f;
+    [SerializeField] private float speed = 8f;
 
-    [SerializeField]
-    private float gravity = -40f;
-
-    [SerializeField]
-    private float jumpHeight = 1.5f;
-
-    [SerializeField]
-    private float speed = 8f;
 
     private Vector3 lastPosition;
 
+    [SerializeField] private float dashSpeed = 12f;
+    private bool canDash = true;
+    private bool isDashing = false;
+    [SerializeField] private float dashCooldown = 0.5f;
+    [SerializeField] private float dashTime = 0.2f;
     
     private void Start()
     {
@@ -57,6 +48,7 @@ public class PlayerController : MonoBehaviour
         Move();
         Jump();
         Slide();
+        AirDash();
 
         if (transform.position == lastPosition)
         {
@@ -70,7 +62,6 @@ public class PlayerController : MonoBehaviour
         lastPosition = transform.position;
     }
 
-    //Responsável pelo movimento horizontal do jogador
     private void Move()
     {
         //move = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
@@ -96,7 +87,6 @@ public class PlayerController : MonoBehaviour
         return velocity;
     }
 
-    //Responsável pelo pulo do jogador
     private void Jump()
     {
         if (isPlayerGrounded())
@@ -137,7 +127,6 @@ public class PlayerController : MonoBehaviour
         characterController.Move(_velocity * Time.deltaTime);
         animator.SetFloat("ySpeed", _velocity.y);
     }
-    //Retorna true se o player está tocando o chão
     private bool isPlayerGrounded()
     {
         if (Physics.BoxCast(transform.position, boxSize, transform.TransformDirection(Vector3.down), Quaternion.identity, castDistance))
@@ -146,13 +135,25 @@ public class PlayerController : MonoBehaviour
         }
         return false;
     }
-    //Desenhar o boxCast no editor
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireCube(transform.position + transform.TransformDirection(Vector3.down) * castDistance, boxSize);
     }
-    //Responsável pelo movimento de deslizar do jogador
+
+    private void AirDash()
+    {
+        if (Input.GetKeyDown("left shift") && canDash && !isPlayerGrounded())
+        {
+            isDashing = true;
+            canDash = false;
+        }
+        if (isDashing)
+        {
+            characterController.Move(move * Time.deltaTime * dashSpeed);
+            StartCoroutine(StopDashing());
+        }
+    }
     private void Slide()
     {
         if (isPlayerGrounded())
@@ -182,7 +183,6 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-    //Controla se o player pode sair do "slide"
     IEnumerator OnSliding()
     {
         yield return new WaitForSeconds(0.25f);
@@ -195,6 +195,15 @@ public class PlayerController : MonoBehaviour
             yield break;
         }
         StartCoroutine("OnSliding");
+    }
+
+    IEnumerator StopDashing()
+    {
+        yield return new WaitForSeconds(dashTime);
+        isDashing = false;
+
+        yield return new WaitForSeconds(dashCooldown);
+        canDash = true;
     }
 
     IEnumerator StoragedJumpTimer()
