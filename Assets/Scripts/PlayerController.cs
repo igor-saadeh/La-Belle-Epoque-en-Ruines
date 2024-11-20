@@ -117,6 +117,7 @@ public class PlayerController : MonoBehaviour
             }
             if (Input.GetKeyUp("space") || Input.GetKeyUp("up"))
             {
+                // reduz altura do pulo
                 _velocity.y /= 2f;
             }
         }
