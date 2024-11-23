@@ -26852,7 +26852,7 @@ MonoBehaviour:
   gravity: -40
   jumpHeight: 1.5
   speed: 8
-  dashSpeed: 12
+  dashSpeed: 10
   dashCooldown: 0.5
   dashTime: 0.2
 --- !u!95 &1604573770
