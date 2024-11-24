@@ -145,6 +145,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown("left shift") && canDash && !isPlayerGrounded())
         {
+            animator.SetBool("isDashing", true);
             isDashing = true;
             canDash = false;
         }
@@ -200,6 +201,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator StopDashing()
     {
         yield return new WaitForSeconds(dashTime);
+        animator.SetBool("isDashing", false);
         isDashing = false;
 
         yield return new WaitForSeconds(dashCooldown);
