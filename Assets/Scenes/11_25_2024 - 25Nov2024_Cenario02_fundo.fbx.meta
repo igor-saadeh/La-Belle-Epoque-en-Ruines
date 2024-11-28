@@ -17,6 +17,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: 13 - Default
+    second: {fileID: 2100000, guid: cb7f9cddfef28d947aae9b6364b66abd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Amarelo
     second: {fileID: 2100000, guid: f13cd960e14bcf54cba52fc00030b0ca, type: 2}
   - first:
