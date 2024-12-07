@@ -30,7 +30,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool doubleJump = true;
     [SerializeField] private float doubleJumpHeight = 3f;
 
-
     private Vector3 lastPosition;
 
     [SerializeField] private float dashSpeed = 12f;

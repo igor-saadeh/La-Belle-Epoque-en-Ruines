@@ -11878,6 +11878,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Collectable (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8536635769173416414, guid: 708fcec412d19044daa6025e10f9696d, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8842066035856998302, guid: 708fcec412d19044daa6025e10f9696d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2
@@ -12450,7 +12454,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 4294967295
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -13274,6 +13278,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Collectable (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 8536635769173416414, guid: 708fcec412d19044daa6025e10f9696d, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8842066035856998302, guid: 708fcec412d19044daa6025e10f9696d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5
@@ -13918,6 +13926,10 @@ PrefabInstance:
     - target: {fileID: 3341977292283462747, guid: 708fcec412d19044daa6025e10f9696d, type: 3}
       propertyPath: m_Name
       value: Collectable (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8536635769173416414, guid: 708fcec412d19044daa6025e10f9696d, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8842066035856998302, guid: 708fcec412d19044daa6025e10f9696d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -15656,6 +15668,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Collectable (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 8536635769173416414, guid: 708fcec412d19044daa6025e10f9696d, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8842066035856998302, guid: 708fcec412d19044daa6025e10f9696d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3
@@ -16286,7 +16302,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   storagedSlide: 0
   storagedJump: 0
-  boxSize: {x: 0.4, y: 0.02, z: 0.7}
+  boxSize: {x: 0.4, y: 0.05, z: 0.7}
   castDistance: 0.83
   _velocity: {x: 0, y: 0, z: 0}
   move: {x: 0, y: 0, z: 0}
@@ -20442,6 +20458,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Collectable
       objectReference: {fileID: 0}
+    - target: {fileID: 8536635769173416414, guid: 708fcec412d19044daa6025e10f9696d, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8842066035856998302, guid: 708fcec412d19044daa6025e10f9696d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -21778,6 +21798,10 @@ PrefabInstance:
     - target: {fileID: 3341977292283462747, guid: 708fcec412d19044daa6025e10f9696d, type: 3}
       propertyPath: m_Name
       value: Collectable (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8536635769173416414, guid: 708fcec412d19044daa6025e10f9696d, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8842066035856998302, guid: 708fcec412d19044daa6025e10f9696d, type: 3}
       propertyPath: m_LocalPosition.x
