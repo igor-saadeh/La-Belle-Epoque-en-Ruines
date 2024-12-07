@@ -19,6 +19,6 @@ public class Collectable : MonoBehaviour
 
     void OnAnimationEndDestroy()
     {
-        Object.Destroy(gameObject);
+        Destroy(gameObject);
     }
 }

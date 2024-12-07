@@ -71,23 +71,23 @@ public class PlayerController : MonoBehaviour
         characterController.Move(move * Time.deltaTime * speed);
     }
 
-    private Vector3 AdjustVelocityToSlope(Vector3 velocity)
-    {
-        Ray ray = new Ray(transform.position, Vector3.down);
+    //private Vector3 AdjustVelocityToSlope(Vector3 velocity)
+    //{
+    //    Ray ray = new Ray(transform.position, Vector3.down);
 
-        if (Physics.Raycast(ray, out RaycastHit hitInfo, 0.2f))
-        {
-            var slopeRotation = Quaternion.FromToRotation(Vector3.up, hitInfo.normal);
-            var adjustedVelocity = slopeRotation * velocity;
+    //    if (Physics.Raycast(ray, out RaycastHit hitInfo, 0.2f))
+    //    {
+    //        var slopeRotation = Quaternion.FromToRotation(Vector3.up, hitInfo.normal);
+    //        var adjustedVelocity = slopeRotation * velocity;
 
-            if (adjustedVelocity.y < 0)
-            {
-                return adjustedVelocity;
-            }
-        }
+    //        if (adjustedVelocity.y < 0)
+    //        {
+    //            return adjustedVelocity;
+    //        }
+    //    }
 
-        return velocity;
-    }
+    //    return velocity;
+    //}
 
     private void Jump()
     {
@@ -131,7 +131,7 @@ public class PlayerController : MonoBehaviour
                 _velocity.y /= 2f;
             }
         }
-        _velocity = AdjustVelocityToSlope(_velocity);
+        //_velocity = AdjustVelocityToSlope(_velocity);
         _velocity.y += gravity * Time.deltaTime; // verificar 
 
         characterController.Move(_velocity * Time.deltaTime);
@@ -139,7 +139,7 @@ public class PlayerController : MonoBehaviour
     }
     private bool isPlayerGrounded()
     {
-        if (Physics.BoxCast(transform.position, boxSize, transform.TransformDirection(Vector3.down), Quaternion.identity, castDistance))
+        if (Physics.BoxCast(transform.position, boxSize, transform.TransformDirection(Vector3.down), Quaternion.identity, castDistance, -1, QueryTriggerInteraction.Ignore))
         {
             return true;
         }
