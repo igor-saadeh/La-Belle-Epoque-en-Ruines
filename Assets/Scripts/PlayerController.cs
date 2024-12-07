@@ -25,8 +25,10 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private Vector3 move;
     [SerializeField] private float gravity = -40f;
-    [SerializeField] private float jumpHeight = 1.5f;
+    [SerializeField] private float jumpHeight = 6f;
     [SerializeField] private float speed = 8f;
+    [SerializeField] private bool doubleJump = true;
+    [SerializeField] private float doubleJumpHeight = 3f;
 
 
     private Vector3 lastPosition;
@@ -50,7 +52,7 @@ public class PlayerController : MonoBehaviour
         Slide();
         AirDash();
 
-        if (transform.position == lastPosition)
+        if (transform.position.x == lastPosition.x)
         {
             animator.SetBool("isIdle", true);
         }
@@ -59,13 +61,13 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("isIdle", false);
         }
 
-        lastPosition = transform.position;
+        lastPosition.x = transform.position.x;
     }
 
     private void Move()
     {
-        //move = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
-        move = new Vector3(1, 0, 0);
+        move = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
+        //move = new Vector3(1, 0, 0);
         characterController.Move(move * Time.deltaTime * speed);
     }
 
@@ -91,6 +93,7 @@ public class PlayerController : MonoBehaviour
     {
         if (isPlayerGrounded())
         {
+            doubleJump = true;
             animator.SetBool("isGrounded", true);
             if (_velocity.y < 0f)
             {
@@ -98,19 +101,26 @@ public class PlayerController : MonoBehaviour
             }
             if (Input.GetKeyDown("space") || Input.GetKeyDown("up"))
             {
-                _velocity.y += Mathf.Sqrt(jumpHeight * -4.0f * gravity); // verificar
+                _velocity.y += Mathf.Sqrt(-jumpHeight * gravity); // verificar
                 animator.SetBool("isGrounded", false);
             }
             else if (Input.GetKey("space") && storagedJump || Input.GetKey("up") && storagedJump)
             {
                 storagedJump = false;
-                _velocity.y += Mathf.Sqrt(jumpHeight * -4.0f * gravity); // verificar
+                _velocity.y += Mathf.Sqrt(-jumpHeight * gravity); // verificar
                 animator.SetBool("isGrounded", false);
             }
         }
         else
         {
-            if (Input.GetKeyDown("space") && !storagedJump || Input.GetKeyDown("up") && !storagedJump)
+            // se nao estiver no chao e a distancia percorrida pelo raycast até o chão for maior que x, executar pulo duplo??
+            if(Input.GetKeyDown("space") && doubleJump || Input.GetKeyDown("up") && doubleJump)
+            {
+                _velocity.y = 0f;
+                _velocity.y += Mathf.Sqrt(-doubleJumpHeight * gravity);
+                doubleJump = false;
+            }
+            else if (Input.GetKeyDown("space") && !storagedJump || Input.GetKeyDown("up") && !storagedJump)
             { 
                 storagedJump = true;
                 StartCoroutine(StoragedJumpTimer());
@@ -135,6 +145,9 @@ public class PlayerController : MonoBehaviour
         }
         return false;
     }
+
+    // metodo raycast?
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;

@@ -5016,8 +5016,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1222789040}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -12485,7 +12485,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1203023135}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b4f96ce6ceeffed468257fcd845cfa78, type: 3}
   m_Name: 
@@ -14533,7 +14533,7 @@ RectTransform:
   m_Father: {fileID: 718993359}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -16286,13 +16286,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   storagedSlide: 0
   storagedJump: 0
-  boxSize: {x: 0.4, y: 0.05, z: 0.7}
+  boxSize: {x: 0.4, y: 0.02, z: 0.7}
   castDistance: 0.83
   _velocity: {x: 0, y: 0, z: 0}
   move: {x: 0, y: 0, z: 0}
   gravity: -40
-  jumpHeight: 1.5
+  jumpHeight: 6
   speed: 8
+  doubleJump: 1
+  doubleJumpHeight: 3
   dashSpeed: 10
   dashCooldown: 0.5
   dashTime: 0.2
@@ -18809,7 +18811,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1924985805
 RectTransform:
   m_ObjectHideFlags: 0
