@@ -112,7 +112,6 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            animator.SetBool("isGrounded", false);
             // se nao estiver no chao e a distancia percorrida pelo raycast até o chão for maior que x, executar pulo duplo??
             if (Input.GetKeyDown("space") && doubleJump || Input.GetKeyDown("up") && doubleJump)
             {
