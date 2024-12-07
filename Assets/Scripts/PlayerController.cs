@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool storagedJump = false;
 
     [SerializeField] private Vector3 boxSize = new Vector3(0.4f, 0.05f, 0.7f);
-    [SerializeField] private float castDistance = 0.82f;
+    [SerializeField] private float castDistance = 0.83f;
 
     [SerializeField] private Vector3 _velocity;
     public Vector3 velocity

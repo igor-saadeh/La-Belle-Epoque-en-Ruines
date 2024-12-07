@@ -8,7 +8,7 @@ public class CameraController : MonoBehaviour
     public PlayerController playerController; // temporario
     private float speed = 8f;
     [SerializeField]
-    private float startSpeed = 4f;
+    private float startSpeed = 6f;
     [SerializeField]
     private float yOffset = 4f;
     [SerializeField]

@@ -13237,8 +13237,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerController: {fileID: 1604573769}
-  startSpeed: 4
-  yOffset: 0
+  startSpeed: 6
+  yOffset: 4
   xOffset: 1
 --- !u!114 &1203023140
 MonoBehaviour:
@@ -17502,9 +17502,11 @@ MonoBehaviour:
   _velocity: {x: 0, y: 0, z: 0}
   move: {x: 0, y: 0, z: 0}
   gravity: -40
-  jumpHeight: 1.5
+  jumpHeight: 6
   speed: 8
-  dashSpeed: 10
+  doubleJump: 1
+  doubleJumpHeight: 3
+  dashSpeed: 12
   dashCooldown: 0.5
   dashTime: 0.2
 --- !u!95 &1604573770
