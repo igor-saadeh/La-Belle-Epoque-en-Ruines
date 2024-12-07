@@ -4,11 +4,13 @@ using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
+using TMPro;
 
 public class PauseMenu : MonoBehaviour
 {
     private GameObject pauseMenu;
     private GameObject gameoverMenu;
+    private GameObject scoreText;
 
     private void Awake()
     {
@@ -19,6 +21,7 @@ public class PauseMenu : MonoBehaviour
     {
         pauseMenu = transform.Find("PauseMenu").gameObject;
         gameoverMenu = transform.Find("GameoverMenu").gameObject;
+        scoreText = transform.Find("Score").gameObject.transform.Find("ScoreText").gameObject;
         Time.timeScale = 1.0f;
     }
 
@@ -29,6 +32,11 @@ public class PauseMenu : MonoBehaviour
             Time.timeScale = 0f;
             pauseMenu.SetActive(true);
         }
+    }
+
+    public void UpdateScore(int score)
+    {
+        scoreText.GetComponent<TMP_Text>().text = "SCORE: " + score.ToString();
     }
 
     public void ResumeGame()

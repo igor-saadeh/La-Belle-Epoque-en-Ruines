@@ -65,8 +65,8 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        move = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
-        //move = new Vector3(1, 0, 0);
+        //move = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
+        move = new Vector3(1, 0, 0);
         characterController.Move(move * Time.deltaTime * speed);
     }
 
@@ -112,8 +112,9 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            animator.SetBool("isGrounded", false);
             // se nao estiver no chao e a distancia percorrida pelo raycast até o chão for maior que x, executar pulo duplo??
-            if(Input.GetKeyDown("space") && doubleJump || Input.GetKeyDown("up") && doubleJump)
+            if (Input.GetKeyDown("space") && doubleJump || Input.GetKeyDown("up") && doubleJump)
             {
                 _velocity.y = 0f;
                 _velocity.y += Mathf.Sqrt(-doubleJumpHeight * gravity);
