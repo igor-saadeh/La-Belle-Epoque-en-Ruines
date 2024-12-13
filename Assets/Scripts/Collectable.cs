@@ -13,6 +13,7 @@ public class Collectable : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        FindObjectOfType<AudioManager>().Play("Collectable");
         animator.SetTrigger("TouchingPlayer");
         GameEvents.onCollect.Invoke();
     }
