@@ -100,11 +100,13 @@ public class PlayerController : MonoBehaviour
             }
             if (Input.GetKeyDown("space") || Input.GetKeyDown("up"))
             {
+                FindObjectOfType<AudioManager>().Play("Jump");
                 _velocity.y += Mathf.Sqrt(-jumpHeight * gravity); // verificar
                 animator.SetBool("isGrounded", false);
             }
             else if (Input.GetKey("space") && storagedJump || Input.GetKey("up") && storagedJump)
             {
+                FindObjectOfType<AudioManager>().Play("Jump");
                 storagedJump = false;
                 _velocity.y += Mathf.Sqrt(-jumpHeight * gravity); // verificar
                 animator.SetBool("isGrounded", false);
@@ -115,6 +117,7 @@ public class PlayerController : MonoBehaviour
             // se nao estiver no chao e a distancia percorrida pelo raycast até o chão for maior que x, executar pulo duplo??
             if (Input.GetKeyDown("space") && doubleJump || Input.GetKeyDown("up") && doubleJump)
             {
+                FindObjectOfType<AudioManager>().Play("Jump");
                 _velocity.y = 0f;
                 _velocity.y += Mathf.Sqrt(-doubleJumpHeight * gravity);
                 doubleJump = false;
