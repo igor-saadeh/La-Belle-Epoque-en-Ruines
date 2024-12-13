@@ -100,13 +100,15 @@ public class PlayerController : MonoBehaviour
             }
             if (Input.GetKeyDown("space") || Input.GetKeyDown("up"))
             {
-                FindObjectOfType<AudioManager>().Play("Jump");
+                //FindObjectOfType<AudioManager>().Play("Jump");
+                AudioManager.instance.Play("Jump");
                 _velocity.y += Mathf.Sqrt(-jumpHeight * gravity); // verificar
                 animator.SetBool("isGrounded", false);
             }
             else if (Input.GetKey("space") && storagedJump || Input.GetKey("up") && storagedJump)
             {
-                FindObjectOfType<AudioManager>().Play("Jump");
+                //FindObjectOfType<AudioManager>().Play("Jump");
+                AudioManager.instance.Play("Jump");
                 storagedJump = false;
                 _velocity.y += Mathf.Sqrt(-jumpHeight * gravity); // verificar
                 animator.SetBool("isGrounded", false);
@@ -117,7 +119,8 @@ public class PlayerController : MonoBehaviour
             // se nao estiver no chao e a distancia percorrida pelo raycast até o chão for maior que x, executar pulo duplo??
             if (Input.GetKeyDown("space") && doubleJump || Input.GetKeyDown("up") && doubleJump)
             {
-                FindObjectOfType<AudioManager>().Play("Jump");
+                //FindObjectOfType<AudioManager>().Play("Jump");
+                AudioManager.instance.Play("Jump");
                 _velocity.y = 0f;
                 _velocity.y += Mathf.Sqrt(-doubleJumpHeight * gravity);
                 doubleJump = false;
@@ -176,7 +179,8 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetKeyDown("down"))
             {
-                FindObjectOfType<AudioManager>().Play("Dash");
+                //FindObjectOfType<AudioManager>().Play("Dash");
+                AudioManager.instance.Play("Dash");
                 animator.SetBool("isSliding", true);
                 speed += 4f;
                 characterController.height /= 2f;
@@ -184,7 +188,8 @@ public class PlayerController : MonoBehaviour
             }
             else if (Input.GetKey("down") && storagedSlide)
             {
-                FindObjectOfType<AudioManager>().Play("Dash");
+                //FindObjectOfType<AudioManager>().Play("Dash");
+                AudioManager.instance.Play("Dash");
                 storagedSlide = false;
                 animator.SetBool("isSliding", true);
                 speed += 4f;

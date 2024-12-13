@@ -9,6 +9,8 @@ public class AudioManager : MonoBehaviour
 
     public static AudioManager instance;
 
+    public bool isGameStarted = false;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -37,7 +39,11 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        Play("MenuTheme");
+        if (!isGameStarted)
+        {
+            Play("MenuTheme");
+            isGameStarted = true;
+        }
     }
 
     public void Play(string name)
@@ -50,4 +56,16 @@ public class AudioManager : MonoBehaviour
         }
         snd.source.Play();
     }
+
+    public void Stop(string name)
+    {
+        Sound snd = Array.Find(sounds, sound => sound.name == name);
+        if (snd == null)
+        {
+            Debug.LogWarning($"Som: {name} not found");
+            return;
+        }
+        snd.source.Stop();
+    }
+
 }

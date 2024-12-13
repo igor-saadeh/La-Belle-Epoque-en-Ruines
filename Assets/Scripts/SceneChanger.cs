@@ -2,20 +2,13 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class SceneChanger : MonoBehaviour
 {
-    //[Tooltip("Nome da cena para carregar. Certifique-se de que o nome esteja correto.")]
-    //public string sceneName;
-
     private void OnTriggerEnter(Collider other)
     {
-        //// Verifica se o objeto que entrou no trigger é o player
-        //if (other.CompareTag("Player"))
-        //{
-        //    // Carrega a próxima cena
-        //    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        //}
         if (other.name == "Player")
         {
             // Carrega a próxima cena
+            AudioManager.instance.Stop("Scene1Theme");
+            AudioManager.instance.Play("Scene2Theme");
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }

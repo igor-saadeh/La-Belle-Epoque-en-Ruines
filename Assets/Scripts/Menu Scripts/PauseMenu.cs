@@ -41,31 +41,38 @@ public class PauseMenu : MonoBehaviour
 
     public void ResumeGame()
     {
-        FindObjectOfType<AudioManager>().Play("Button");
+        //FindObjectOfType<AudioManager>().Play("Button");
+        AudioManager.instance.Play("Button");
         Time.timeScale = 1f;
         pauseMenu.SetActive(false);
     }
 
     public void RestartGame()
     {
-        FindObjectOfType<AudioManager>().Play("Button");
+        //FindObjectOfType<AudioManager>().Play("Button");
+        AudioManager.instance.Play("Button");
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);      
     }
 
     public void SettingsMenu()
     {
-        FindObjectOfType<AudioManager>().Play("Button");
+        //FindObjectOfType<AudioManager>().Play("Button");
+        AudioManager.instance.Play("Button");
     }
 
     public void GoToMainMenu()
     {
-        FindObjectOfType<AudioManager>().Play("Button");
+        //FindObjectOfType<AudioManager>().Play("Button");
+        AudioManager.instance.Play("Button");
         SceneManager.LoadScene("Menu");
     }
 
     public void ShowGameover()
     {
+        AudioManager.instance.Stop("Scene1Theme");
+        AudioManager.instance.Stop("Scene2Theme");
+        AudioManager.instance.Play("Gameover");
         Time.timeScale = 0f;
         gameoverMenu.SetActive(true);
     }
