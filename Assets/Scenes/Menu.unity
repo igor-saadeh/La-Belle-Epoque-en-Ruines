@@ -1057,7 +1057,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "ARTISTAS 2D\nVictor\nJo\xE3o\nDaniel"
+  m_text: "ARTISTAS 2D\nDaniel\nJo\xE3o\nVictor Fernando Martins Ribeiro"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
@@ -3781,7 +3781,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Sound Desginer:\nJo\xE3o Marcelo"
+  m_text: "Sound Desginer:\n\xCDgor Sa\xE1deh\nJo\xE3o Marcelo"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
@@ -4764,7 +4764,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'QA/TESTER
 
-    Guilherme
+    Guilherme Becker De Azevedo
 
 '
   m_isRightToLeft: 0
@@ -5227,7 +5227,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "UI/UX DESIGNERS\n\xCDgor Sa\xE1deh\nVictor"
+  m_text: "UI/UX DESIGNERS\n\xCDgor Sa\xE1deh\nVictor Fernando Martins Ribeiro"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
@@ -5573,7 +5573,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "PROGRAMADORES\n\xCDgor Sa\xE1deh\nGuilherme"
+  m_text: "PROGRAMADORES\nGuilherme Becker De Azevedo\n\xCDgor Sa\xE1deh"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
