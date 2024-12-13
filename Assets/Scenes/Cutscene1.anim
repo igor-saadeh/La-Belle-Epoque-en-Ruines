@@ -135,7 +135,14 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 5.25
+  - time: 0
+    functionName: Nextcena
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 5.1666665
     functionName: Nextcena
     data: 
     objectReferenceParameter: {fileID: 0}
