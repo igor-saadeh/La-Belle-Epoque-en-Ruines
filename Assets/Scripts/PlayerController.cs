@@ -176,6 +176,7 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetKeyDown("down"))
             {
+                FindObjectOfType<AudioManager>().Play("Dash");
                 animator.SetBool("isSliding", true);
                 speed += 4f;
                 characterController.height /= 2f;
@@ -183,6 +184,7 @@ public class PlayerController : MonoBehaviour
             }
             else if (Input.GetKey("down") && storagedSlide)
             {
+                FindObjectOfType<AudioManager>().Play("Dash");
                 storagedSlide = false;
                 animator.SetBool("isSliding", true);
                 speed += 4f;
