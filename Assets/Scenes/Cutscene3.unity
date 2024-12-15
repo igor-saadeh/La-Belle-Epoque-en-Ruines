@@ -238,7 +238,7 @@ GameObject:
   - component: {fileID: 904730908}
   - component: {fileID: 904730910}
   m_Layer: 5
-  m_Name: Cutscene1
+  m_Name: Cutscene3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -253,7 +253,7 @@ RectTransform:
   m_GameObject: {fileID: 904730905}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 15, y: 15, z: 15}
+  m_LocalScale: {x: 0.58, y: 0.58, z: 0.58}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -281,7 +281,7 @@ Animator:
   m_GameObject: {fileID: 904730905}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 28d90f3d99c21f54ca9a258f7d5bcc6b, type: 2}
+  m_Controller: {fileID: 9100000, guid: 018c4423ef51c6446ae40f3c975bbf0e, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -333,12 +333,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 909199666bd3976408094d09155b5ef7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 17a2b170a333ea94f9919425375dcde7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.5, y: 0.84375}
+  m_Size: {x: 18.78, y: 13.08}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -428,7 +428,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1628472677}
         m_TargetAssemblyTypeName: MainMenuController, Assembly-CSharp
-        m_MethodName: PlayGame
+        m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -458,7 +458,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 31b65b34a0aeba64e9b85a866eafa44b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a1a5db31e89cce34ba77cbe4bda67aa2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -719,8 +719,8 @@ Camera:
   m_GameObject: {fileID: 1717890302}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0

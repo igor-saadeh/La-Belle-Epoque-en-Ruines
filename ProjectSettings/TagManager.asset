@@ -13,7 +13,7 @@ TagManager:
   - Water
   - UI
   - Collectable
-  - 
+  - Transition
   - 
   - 
   - 
@@ -41,4 +41,25 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: New Layer 1
+    uniqueID: 3969981219
+    locked: 0
+  - name: New Layer 2
+    uniqueID: 3092403649
+    locked: 0
+  - name: New Layer 3
+    uniqueID: 669412771
+    locked: 0
+  - name: New Layer 4
+    uniqueID: 1873601607
+    locked: 0
+  - name: New Layer 5
+    uniqueID: 511575417
+    locked: 0
+  - name: New Layer 6
+    uniqueID: 1714251231
+    locked: 0
+  - name: Transition
+    uniqueID: 2748299239
     locked: 0

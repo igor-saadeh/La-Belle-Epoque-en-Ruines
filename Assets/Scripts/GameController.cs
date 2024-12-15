@@ -7,7 +7,6 @@ using UnityEngine.SocialPlatforms.Impl;
 public class GameController : MonoBehaviour
 {
     private PauseMenu pauseMenu;
-
     private int score = 0;
     void Awake()
     {

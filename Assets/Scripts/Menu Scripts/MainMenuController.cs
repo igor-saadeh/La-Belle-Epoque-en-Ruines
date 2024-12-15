@@ -14,6 +14,15 @@ public class MainMenuController : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
+    public void Play()
+    {
+        //FindObjectOfType<AudioManager>().Play("Button");
+        AudioManager.instance.Play("Button");
+        AudioManager.instance.Stop("MenuTheme");
+        AudioManager.instance.Play("Scene2Theme");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
     public void SettingsScreen()
     {
         //FindObjectOfType<AudioManager>().Play("Button");
